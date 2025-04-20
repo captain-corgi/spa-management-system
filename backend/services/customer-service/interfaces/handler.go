@@ -3,9 +3,10 @@ package interfaces
 import (
 	"net/http"
 	"strconv"
+
 	"github.com/labstack/echo/v4"
-	"../application"
-	"../domain"
+	"github.com/your-org/customer-service/application"
+	"github.com/your-org/customer-service/domain"
 )
 
 type CustomerHandler struct {

@@ -1,8 +1,8 @@
 package infrastructure
 
 import (
+	"github.com/your-org/analytics-service/domain"
 	"gorm.io/gorm"
-	"../domain"
 )
 
 type GormMetricRepository struct {

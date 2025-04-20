@@ -2,10 +2,11 @@ package interfaces
 
 import (
 	"net/http"
-	"strconv"
+
 	"github.com/labstack/echo/v4"
-	"../application"
-	"../domain"
+
+	"github.com/your-org/analytics-service/application"
+	"github.com/your-org/analytics-service/domain"
 )
 
 type AnalyticsHandler struct {
@@ -13,7 +14,7 @@ type AnalyticsHandler struct {
 }
 
 func NewAnalyticsHandler(service *application.AnalyticsService) *AnalyticsHandler {
-	return &AnalyticsHandler{service: service)
+	return &AnalyticsHandler{service: service}
 }
 
 func (h *AnalyticsHandler) RegisterRoutes(e *echo.Echo) {

@@ -1,6 +1,6 @@
 package application
 
-import "../domain"
+import "github.com/your-org/customer-service/domain"
 
 type CustomerService struct {
 	repo domain.CustomerRepository

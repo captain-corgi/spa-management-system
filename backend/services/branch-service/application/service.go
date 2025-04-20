@@ -1,6 +1,6 @@
 package application
 
-import "../domain"
+import "github.com/your-org/branch-service/domain"
 
 type BranchService struct {
 	repo domain.BranchRepository

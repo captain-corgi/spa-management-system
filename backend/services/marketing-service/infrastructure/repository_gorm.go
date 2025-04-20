@@ -1,8 +1,8 @@
 package infrastructure
 
 import (
+	"github.com/your-org/marketing-service/domain"
 	"gorm.io/gorm"
-	"../domain"
 )
 
 type GormCampaignRepository struct {

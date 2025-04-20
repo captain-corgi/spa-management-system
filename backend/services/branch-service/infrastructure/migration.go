@@ -1,8 +1,8 @@
 package infrastructure
 
 import (
+	"github.com/your-org/branch-service/domain"
 	"gorm.io/gorm"
-	"../domain"
 )
 
 func Migrate(db *gorm.DB) error {

@@ -1,6 +1,6 @@
 package application
 
-import "../domain"
+import "github.com/your-org/marketing-service/domain"
 
 type MarketingService struct {
 	repo domain.CampaignRepository

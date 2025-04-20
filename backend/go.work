@@ -1,6 +1,7 @@
 go 1.24.1
 
 use (
+	./pkg
 	./services/analytics-service
 	./services/appointment-service
 	./services/branch-service
@@ -8,8 +9,4 @@ use (
 	./services/finance-service
 	./services/marketing-service
 	./services/staff-service
-	./pkg/common
-	./pkg/database
-	./pkg/auth
-	./api-gateway
 )

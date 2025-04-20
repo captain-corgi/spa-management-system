@@ -3,13 +3,14 @@ package main
 import (
 	"log"
 	"os"
+
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"./domain"
-	"./application"
-	"./infrastructure"
-	"./interfaces"
+
+	"github.com/your-org/branch-service/application"
+	"github.com/your-org/branch-service/infrastructure"
+	"github.com/your-org/branch-service/interfaces"
 )
 
 func main() {

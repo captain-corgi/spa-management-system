@@ -3,9 +3,11 @@ package interfaces
 import (
 	"net/http"
 	"strconv"
+
 	"github.com/labstack/echo/v4"
-	"../application"
-	"../domain"
+
+	"github.com/your-org/marketing-service/application"
+	"github.com/your-org/marketing-service/domain"
 )
 
 type MarketingHandler struct {

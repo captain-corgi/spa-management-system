@@ -3,9 +3,11 @@ package interfaces
 import (
 	"net/http"
 	"strconv"
+
 	"github.com/labstack/echo/v4"
-	"../application"
-	"../domain"
+
+	"github.com/your-org/staff-service/application"
+	"github.com/your-org/staff-service/domain"
 )
 
 type StaffHandler struct {

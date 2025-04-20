@@ -1,6 +1,6 @@
 package application
 
-import "../domain"
+import "github.com/your-org/analytics-service/domain"
 
 type AnalyticsService struct {
 	repo domain.MetricRepository
