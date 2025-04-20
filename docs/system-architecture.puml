@@ -1,0 +1,95 @@
+@startuml
+!theme spacelab
+
+actor User
+
+package "Frontend (Micro Frontends)" {
+  [Shell App]
+  [Customer App]
+  [Appointment App]
+  [Staff App]
+  [Branch App]
+  [Marketing App]
+  [Finance App]
+  [Analytics App]
+  Shell App --> [Customer App]
+  Shell App --> [Appointment App]
+  Shell App --> [Staff App]
+  Shell App --> [Branch App]
+  Shell App --> [Marketing App]
+  Shell App --> [Finance App]
+  Shell App --> [Analytics App]
+}
+
+User --> [Shell App]
+
+[Shell App] --> "API Gateway"
+
+package "API Gateway" {
+  [API Gateway]
+}
+
+[API Gateway] --> [Customer Service]
+[API Gateway] --> [Appointment Service]
+[API Gateway] --> [Staff Service]
+[API Gateway] --> [Branch Service]
+[API Gateway] --> [Marketing Service]
+[API Gateway] --> [Finance Service]
+[API Gateway] --> [Analytics Service]
+
+package "Backend (Microservices)" {
+  [Customer Service]
+  [Appointment Service]
+  [Staff Service]
+  [Branch Service]
+  [Marketing Service]
+  [Finance Service]
+  [Analytics Service]
+}
+
+[Customer Service] --> [PostgreSQL]
+[Appointment Service] --> [PostgreSQL]
+[Staff Service] --> [PostgreSQL]
+[Branch Service] --> [PostgreSQL]
+[Marketing Service] --> [PostgreSQL]
+[Finance Service] --> [PostgreSQL]
+[Analytics Service] --> [PostgreSQL]
+
+[Customer Service] --> [Redis]
+[Appointment Service] --> [Redis]
+[Staff Service] --> [Redis]
+[Branch Service] --> [Redis]
+[Marketing Service] --> [Redis]
+[Finance Service] --> [Redis]
+[Analytics Service] --> [Redis]
+
+[Customer Service] ..> [Message Broker]
+[Appointment Service] ..> [Message Broker]
+[Staff Service] ..> [Message Broker]
+[Branch Service] ..> [Message Broker]
+[Marketing Service] ..> [Message Broker]
+[Finance Service] ..> [Message Broker]
+[Analytics Service] ..> [Message Broker]
+
+[API Gateway] --> [Observability]
+
+[API Gateway] --> [CI/CD]
+
+[CI/CD] --> [Kubernetes]
+
+[PostgreSQL] -[#orange]-> [Kubernetes]
+[Redis] -[#orange]-> [Kubernetes]
+
+[Message Broker] -[#orange]-> [Kubernetes]
+
+[API Gateway] -[#orange]-> [Kubernetes]
+
+[CI/CD] -[#orange]-> [Kubernetes]
+
+[Observability] -[#orange]-> [Kubernetes]
+
+[API Gateway] --> [External Integrations]
+
+[CI/CD] --> [Docker]
+
+@enduml

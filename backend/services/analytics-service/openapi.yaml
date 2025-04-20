@@ -1,0 +1,16 @@
+openapi: 3.0.3
+info:
+  title: Analytics Service API
+  version: 1.0.0
+paths:
+  /metrics:
+    get:
+      summary: List all metrics
+      responses:
+        '200':
+          description: List of metrics
+    post:
+      summary: Create a new metric
+      responses:
+        '201':
+          description: Created

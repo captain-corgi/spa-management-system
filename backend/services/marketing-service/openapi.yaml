@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Marketing Service API
+  version: 1.0.0
+paths:
+  /campaigns:
+    get:
+      summary: List all campaigns
+      responses:
+        '200':
+          description: List of campaigns
+    post:
+      summary: Create a new campaign
+      responses:
+        '201':
+          description: Created
+  /campaigns/{id}:
+    get:
+      summary: Get campaign by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Campaign found
+        '404':
+          description: Not found
+    put:
+      summary: Update campaign
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Delete campaign
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted

@@ -1,0 +1,8 @@
+# .gitignore
+# Ignore everything
+*
+# Except this file and markdown docs
+!.gitignore
+!*.md
+!*.puml
+!*.png

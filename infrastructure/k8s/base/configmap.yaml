@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spa-config
+  namespace: spa-system
+data:
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+  POSTGRES_DB: spa_db
+  TZ: Asia/Bangkok

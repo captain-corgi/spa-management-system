@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Finance Service API
+  version: 1.0.0
+paths:
+  /invoices:
+    get:
+      summary: List all invoices
+      responses:
+        '200':
+          description: List of invoices
+    post:
+      summary: Create a new invoice
+      responses:
+        '201':
+          description: Created
+  /invoices/{id}:
+    get:
+      summary: Get invoice by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Invoice found
+        '404':
+          description: Not found
+    put:
+      summary: Update invoice
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Delete invoice
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted

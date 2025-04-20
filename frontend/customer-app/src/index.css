@@ -1,0 +1,19 @@
+.customer-app-container {
+  font-family: system-ui, sans-serif;
+  background: #fff;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px #0001;
+}
+.customer-app-content {
+  display: flex;
+  gap: 2rem;
+}
+.customer-list {
+  min-width: 250px;
+}
+.customer-detail {
+  flex: 1;
+}

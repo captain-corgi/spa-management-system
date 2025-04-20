@@ -1,0 +1,286 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+
+  customer-service:
+    build:
+      context: ../../backend/services/customer-service
+    ports:
+      - "8001:8080"
+    environment:
+      DATABASE_DSN: ${DATABASE_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  appointment-service:
+    build:
+      context: ../../backend/services/appointment-service
+    ports:
+      - "8002:8080"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  staff-service:
+    build:
+      context: ../../backend/services/staff-service
+    ports:
+      - "8003:8080"
+    environment:
+      DATABASE_DSN: ${DATABASE_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  branch-service:
+    build:
+      context: ../../backend/services/branch-service
+    ports:
+      - "8004:8080"
+    environment:
+      DATABASE_DSN: ${DATABASE_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  marketing-service:
+    build:
+      context: ../../backend/services/marketing-service
+    ports:
+      - "8005:8080"
+    environment:
+      DATABASE_DSN: ${DATABASE_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  finance-service:
+    build:
+      context: ../../backend/services/finance-service
+    ports:
+      - "8006:8080"
+    environment:
+      DATABASE_DSN: ${DATABASE_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  analytics-service:
+    build:
+      context: ../../backend/services/analytics-service
+    ports:
+      - "8007:8080"
+    environment:
+      DATABASE_DSN: ${DATABASE_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - backend
+
+  customer-app:
+    build:
+      context: ../../frontend/customer-app
+    ports:
+      - "3001:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  appointment-app:
+    build:
+      context: ../../frontend/appointment-app
+    ports:
+      - "3002:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  staff-app:
+    build:
+      context: ../../frontend/staff-app
+    ports:
+      - "3003:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  branch-app:
+    build:
+      context: ../../frontend/branch-app
+    ports:
+      - "3004:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  marketing-app:
+    build:
+      context: ../../frontend/marketing-app
+    ports:
+      - "3005:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  finance-app:
+    build:
+      context: ../../frontend/finance-app
+    ports:
+      - "3006:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  analytics-app:
+    build:
+      context: ../../frontend/analytics-app
+    ports:
+      - "3007:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+  shell:
+    build:
+      context: ../../frontend/shell
+    ports:
+      - "3000:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - frontend
+
+networks:
+  backend:
+  frontend:
+
+# Persistent volumes for database and redis
+volumes:
+  db_data:
+    driver: local
+  redis_data:
+    driver: local

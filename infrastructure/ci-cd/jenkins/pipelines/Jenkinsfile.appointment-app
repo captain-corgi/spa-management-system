@@ -1,0 +1,60 @@
+pipeline {
+  agent any
+  environment {
+    DOCKERHUB_USERNAME = credentials('dockerhub-username')
+    DOCKERHUB_TOKEN = credentials('dockerhub-token')
+    EMAIL_USER = credentials('email-user')
+    EMAIL_PASSWORD = credentials('email-password')
+    NOTIFY_EMAIL = credentials('notify-email')
+    CODECOV_TOKEN = credentials('codecov-token')
+  }
+  options {
+    skipDefaultCheckout(true)
+    timestamps()
+    ansiColor('xterm')
+  }
+  parameters {
+    choice(name: 'ENV', choices: ['dev', 'sit', 'uat', 'nft', 'prd'], description: 'Target environment')
+    choice(name: 'GIT_BRANCH', choices: ['develop', 'sit', 'uat', 'nft', 'main'], description: 'Branch to build')
+  }
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+    stage('Build & Test') {
+      steps {
+        dir('frontend/appointment-app') {
+          sh 'npm ci'
+          sh 'npm run test -- --coverage'
+          sh 'npm run build'
+          sh 'docker build -t $DOCKERHUB_USERNAME/appointment-app:${ENV}-${GIT_COMMIT} .'
+          sh 'trivy image $DOCKERHUB_USERNAME/appointment-app:${ENV}-${GIT_COMMIT} || true'
+          sh 'docker push $DOCKERHUB_USERNAME/appointment-app:${ENV}-${GIT_COMMIT}'
+        }
+      }
+    }
+    stage('Deploy to Kubernetes') {
+      steps {
+        script {
+          def ns = "spa-${params.ENV == 'prd' ? 'system' : params.ENV}"
+          sh "kubectl set image deployment/appointment-app appointment-app=$DOCKERHUB_USERNAME/appointment-app:${params.ENV}-${GIT_COMMIT} -n ${ns}"
+        }
+      }
+    }
+    stage('Notify') {
+      steps {
+        mail to: "$NOTIFY_EMAIL",
+             subject: "[SpaMS] Deploy Success: appointment-app ${params.ENV.toUpperCase()} - ${GIT_COMMIT}",
+             body: "appointment-app deployed to ${params.ENV.toUpperCase()} successfully."
+      }
+    }
+  }
+  post {
+    always { cleanWs() }
+    failure {
+      mail to: "$NOTIFY_EMAIL",
+           subject: "[SpaMS] Deploy FAILED: appointment-app ${params.ENV.toUpperCase()} - ${GIT_COMMIT}",
+           body: "Deployment to ${params.ENV.toUpperCase()} failed. Check Jenkins logs."
+    }
+  }
+}

@@ -1,0 +1,68 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spa-ingress
+  namespace: spa-system
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: spa.local
+      http:
+        paths:
+          - path: /customer(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: customer-app
+                port:
+                  number: 80
+          - path: /appointment(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: appointment-app
+                port:
+                  number: 80
+          - path: /staff(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: staff-app
+                port:
+                  number: 80
+          - path: /branch(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: branch-app
+                port:
+                  number: 80
+          - path: /marketing(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: marketing-app
+                port:
+                  number: 80
+          - path: /finance(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: finance-app
+                port:
+                  number: 80
+          - path: /analytics(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics-app
+                port:
+                  number: 80
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: shell
+                port:
+                  number: 80
