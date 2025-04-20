@@ -1,0 +1,19 @@
+# Branch Service Domain Guide
+
+## Domain Responsibility
+Manages spa branches, locations, and branch-specific resources.
+
+## Domain Entities
+- Branch
+- Location
+- Resource
+
+## Domain Rules
+1. Branch names must be unique
+2. Resources must be assigned to only one branch
+
+## Technical Requirements
+- Clean Architecture
+- GORM
+- Echo REST API
+- Metrics

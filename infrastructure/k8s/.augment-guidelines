@@ -1,0 +1,14 @@
+# Kubernetes Configuration Guide
+
+## Purpose
+- Define deployment manifests
+- Configure services and ingress
+- Setup persistent volumes
+- Manage secrets and config maps
+- Define resource requirements
+
+## Guidelines
+- Use namespaces for organization
+- Implement readiness and liveness probes
+- Configure horizontal pod autoscaling
+- Setup proper resource limits

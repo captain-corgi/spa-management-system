@@ -1,0 +1,14 @@
+# API Gateway Guide
+
+## Responsibility
+- Route requests to appropriate microservices
+- Handle authentication and authorization
+- Rate limiting and request validation
+- Response caching
+- API documentation
+
+## Implementation Guidelines
+- Use Echo Framework for routing
+- Implement circuit breaker pattern
+- Configure CORS appropriately
+- Setup Swagger documentation

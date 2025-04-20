@@ -1,0 +1,19 @@
+# Marketing Service Domain Guide
+
+## Domain Responsibility
+Handles campaigns, promotions, and customer engagement analytics.
+
+## Domain Entities
+- Campaign
+- Promotion
+- Engagement
+
+## Domain Rules
+1. Campaigns must have defined start and end dates
+2. Promotions should be unique per campaign
+
+## Technical Requirements
+- Clean Architecture
+- GORM
+- Echo REST API
+- Metrics

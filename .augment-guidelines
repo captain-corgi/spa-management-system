@@ -1,0 +1,45 @@
+PROJECT_NAME: Spa Management System
+ARCHITECTURE:
+  Frontend: React, TypeScript, Vite, Micro Frontend
+  Backend: Golang, GORM, Echo, Microservices, DDD, Clean Architecture
+  Database: PostgreSQL, Redis
+
+RULES:
+  ALWAYS follow DDD principles for backend services
+  ALWAYS use TypeScript for frontend code
+  NEVER mix domain responsibilities across services
+  ALWAYS document API endpoints
+  ALWAYS write unit tests for domain logic
+  ALWAYS use Docker for service containerization
+  NEVER store sensitive credentials in code repositories
+
+PROJECT_STRUCTURE:
+  spa-management-system/
+  ├── backend/
+  │   ├── services/
+  │   │   ├── customer-service/
+  │   │   ├── appointment-service/
+  │   │   ├── staff-service/
+  │   │   ├── branch-service/
+  │   │   ├── marketing-service/
+  │   │   ├── finance-service/
+  │   │   └── analytics-service/
+  │   ├── pkg/
+  │   │   ├── common/
+  │   │   ├── database/
+  │   │   └── auth/
+  │   └── api-gateway/
+  ├── frontend/
+  │   ├── shell/
+  │   ├── customer-app/
+  │   ├── appointment-app/
+  │   ├── staff-app/
+  │   ├── branch-app/
+  │   ├── marketing-app/
+  │   ├── finance-app/
+  │   └── analytics-app/
+  ├── infrastructure/
+  │   ├── docker/
+  │   ├── k8s/
+  │   └── ci-cd/
+  └── docs/

@@ -1,0 +1,21 @@
+# Appointment Service Domain Guide
+
+## Domain Responsibility
+Handles booking, scheduling, and management of spa appointments.
+
+## Domain Entities
+- Appointment
+- Customer
+- Staff
+- Room
+
+## Domain Rules
+1. Appointments must not overlap for the same staff or room
+2. Cancellations must be logged with reasons
+3. Only available staff can be booked
+
+## Technical Requirements
+- Follow Clean Architecture
+- Use GORM for persistence
+- RESTful API with Echo
+- Metrics for analytics

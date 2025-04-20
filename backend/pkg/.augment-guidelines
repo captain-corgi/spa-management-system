@@ -1,0 +1,15 @@
+# Shared Infrastructure Components
+
+## Purpose
+Provides common functionality across all microservices:
+- Authentication and authorization
+- Database connections and transactions
+- Logging and error handling
+- Message broker integration
+- Common utility functions
+
+## Implementation Guidelines
+- Design for reusability
+- Minimize dependencies
+- Use interfaces for flexibility
+- Document usage patterns

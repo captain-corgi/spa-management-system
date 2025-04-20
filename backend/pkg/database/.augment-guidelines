@@ -1,0 +1,13 @@
+# Database Configuration Guide
+
+## Purpose
+- Define database schemas
+- Manage migrations
+- Configure connection pooling
+- Setup Redis caching
+
+## Guidelines
+- Use PostgreSQL for persistent storage
+- Implement migrations with proper versioning
+- Setup Redis for caching and session management
+- Configure connection pooling
