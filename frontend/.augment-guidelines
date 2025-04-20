@@ -1,0 +1,116 @@
+# Frontend Architecture Guidelines
+
+## Architecture Overview
+
+The spa management system follows a micro frontend architecture with the following components:
+
+1. **Shell Application**
+   - Acts as a container for all micro frontends
+   - Handles routing and authentication
+   - Provides shared components and state management
+   - Uses Module Federation for micro frontend integration
+
+2. **Micro Frontends**
+   - Each domain has its own dedicated frontend application:
+     - Customer App
+     - Appointment App
+     - Staff App
+     - Branch App
+     - Marketing App
+     - Finance App
+     - Analytics App
+   - Each app is independently deployable and maintainable
+
+3. **Technology Stack**
+   - React with TypeScript
+   - Vite for build tooling
+   - Module Federation for micro frontend integration
+   - React Router for routing
+   - Vitest for testing
+
+## Development Guidelines
+
+### General Rules
+- ALWAYS use TypeScript for all frontend code
+- ALWAYS follow the established folder structure
+- NEVER mix domain responsibilities across micro frontends
+- ALWAYS implement proper error handling
+- ALWAYS write unit tests for components
+- ALWAYS use the shared authentication and state management from the shell
+
+### Shell Application
+- The shell application should ONLY contain cross-cutting concerns
+- Domain-specific logic should ALWAYS be in the respective micro frontend
+- Shared components should be placed in the shell's shared directory
+- Authentication and global state should be managed by the shell
+
+### Micro Frontends
+- Each micro frontend should focus on a single domain
+- Micro frontends should expose a single App component
+- Micro frontends should share common dependencies via Module Federation
+- Each micro frontend should have its own routing
+- API calls should be encapsulated in service files
+
+### Component Structure
+- Components should follow a consistent pattern
+- Each component should have a clear responsibility
+- Complex components should be broken down into smaller ones
+- Components should handle loading and error states
+
+### State Management
+- Use React Context for global state
+- Use local state for component-specific state
+- Consider Redux or Zustand for complex state needs
+- Share authentication state via the shell
+
+### Styling
+- Use a consistent approach to styling across all micro frontends
+- Consider implementing a shared design system
+- Use CSS modules or styled-components for component styling
+
+### Testing
+- Write unit tests for all components
+- Test loading, error, and success states
+- Mock API calls in tests
+- Use React Testing Library for component testing
+
+## Areas for Improvement
+
+1. **Complete Module Federation Integration**: Uncomment and fully implement the Module Federation setup in the shell application.
+
+2. **Enhance Authentication**: Implement JWT-based authentication with proper backend integration.
+
+3. **Add Design System**: Implement a shared design system or component library for consistent styling.
+
+4. **Increase Test Coverage**: Add more tests for components and integration tests for API calls.
+
+5. **Implement Error Boundaries**: Add React Error Boundaries for more robust error handling.
+
+6. **Add State Management**: Consider adding a more robust state management solution like Redux or Zustand for complex state needs.
+
+7. **Implement API Layer**: Create a dedicated API layer for each micro frontend to centralize API calls and error handling.
+
+## Folder Structure
+
+```
+frontend/
+├── shell/                     # Container application
+│   ├── src/
+│   │   ├── shared/            # Shared components and utilities
+│   │   │   ├── auth/          # Authentication context
+│   │   │   ├── components/    # Shared UI components
+│   │   │   └── state/         # Global state management
+│   │   ├── App.tsx           # Main application component
+│   │   └── main.tsx          # Entry point
+│   └── vite.config.ts        # Vite and Module Federation config
+├── [domain]-app/             # Domain-specific micro frontend
+│   ├── src/
+│   │   ├── components/       # Domain-specific components
+│   │   ├── services/         # API services
+│   │   ├── types/            # TypeScript interfaces
+│   │   ├── utils/            # Utility functions
+│   │   ├── App.tsx           # Main component (exposed)
+│   │   └── main.tsx          # Entry point
+│   ├── __tests__/            # Test files
+│   └── vite.config.ts        # Vite and Module Federation config
+```

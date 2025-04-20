@@ -1,0 +1,70 @@
+# .gitignore for Spa Management System
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules
+.pnp
+.pnp.js
+
+# Build output
+dist
+dist-ssr
+*.local
+build
+
+# Frontend module build directories
+frontend/*/dist/
+frontend/*/build/
+frontend/shell/dist/
+frontend/customer-app/dist/
+frontend/appointment-app/dist/
+frontend/staff-app/dist/
+frontend/branch-app/dist/
+frontend/marketing-app/dist/
+frontend/finance-app/dist/
+frontend/analytics-app/dist/
+
+# Backend build artifacts
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# IDE/editor configs
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Temporary files
+tmp/
+temp/

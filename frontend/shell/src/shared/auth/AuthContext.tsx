@@ -8,8 +8,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// For development purposes, we'll set isAuthenticated to true by default
+const isDevelopment = import.meta.env.DEV;
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(isDevelopment ? true : false);
 
   const login = () => setIsAuthenticated(true);
   const logout = () => setIsAuthenticated(false);

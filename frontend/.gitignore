@@ -13,6 +13,18 @@ node_modules/
 /dist/
 /build/
 
+# Frontend module build directories
+*/dist/
+*/build/
+shell/dist/
+customer-app/dist/
+appointment-app/dist/
+staff-app/dist/
+branch-app/dist/
+marketing-app/dist/
+finance-app/dist/
+analytics-app/dist/
+
 # IDE/editor configs
 .idea/
 .vscode/
