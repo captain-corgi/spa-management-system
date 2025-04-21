@@ -1,0 +1,13 @@
+# Analytics Micro Frontend
+
+## Features
+- Dashboard with key metrics
+- Report generation
+- Data visualization
+
+## Technical Requirements
+- React with TypeScript
+- Vite for building
+- Module Federation for integration
+- Component library compatibility
+- REST API integration

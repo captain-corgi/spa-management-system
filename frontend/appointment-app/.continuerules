@@ -1,0 +1,14 @@
+# Appointment Management Micro Frontend
+
+## Features
+- Appointment booking and calendar
+- Room assignment and availability
+- Appointment status tracking
+- Customer and staff association
+
+## Technical Requirements
+- React with TypeScript
+- Vite for building
+- Module Federation for integration
+- Component library compatibility
+- REST API integration

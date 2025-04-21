@@ -1,0 +1,16 @@
+# Docker Configuration Guide
+
+## Purpose
+- Define containerization for all services here
+- Separate dev,sit,uat,nft and prod configurations
+- Configure development environment
+- Setup production-ready containers
+- Manage database containers
+
+## Requirements
+- Separate dev,sit,uat,nft and prod configurations
+- Multi-stage builds for efficiency
+- Volume mounting for development
+- Health checks
+- Proper networking
+- Centralize docker and docker-compose for all back end and front end services here

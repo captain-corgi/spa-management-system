@@ -1,0 +1,21 @@
+# Finance Service Domain Guide
+
+## Domain Responsibility
+Manages billing, payments, revenue, and expense tracking.
+
+## Domain Entities
+- Invoice
+- Payment
+- Revenue
+- Expense
+
+## Domain Rules
+1. Invoices must be sequentially numbered
+2. Payments must be linked to invoices
+3. Expenses require approval
+
+## Technical Requirements
+- Clean Architecture
+- GORM
+- Echo REST API
+- Metrics

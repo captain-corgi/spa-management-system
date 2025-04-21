@@ -1,0 +1,13 @@
+# Finance Management Micro Frontend
+
+## Features
+- Invoice and payment management
+- Revenue and expense tracking
+- Financial reporting
+
+## Technical Requirements
+- React with TypeScript
+- Vite for building
+- Module Federation for integration
+- Component library compatibility
+- REST API integration

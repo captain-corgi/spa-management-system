@@ -1,0 +1,13 @@
+# Marketing Management Micro Frontend
+
+## Features
+- Campaign creation and management
+- Promotion tracking
+- Customer engagement analytics
+
+## Technical Requirements
+- React with TypeScript
+- Vite for building
+- Module Federation for integration
+- Component library compatibility
+- REST API integration

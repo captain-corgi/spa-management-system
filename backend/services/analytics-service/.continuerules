@@ -1,0 +1,19 @@
+# Analytics Service Domain Guide
+
+## Domain Responsibility
+Collects and analyzes business metrics and operational data.
+
+## Domain Entities
+- Metric
+- Report
+- Dashboard
+
+## Domain Rules
+1. Metrics must be timestamped
+2. Reports should be generated on demand or by schedule
+
+## Technical Requirements
+- Clean Architecture
+- GORM
+- Echo REST API
+- Metrics
